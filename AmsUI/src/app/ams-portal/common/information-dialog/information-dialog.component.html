@@ -1,0 +1,7 @@
+<ams-dialog-title [icon]="['fad', data.icon]" [label]="data.title"></ams-dialog-title>
+<div mat-dialog-content class="content">
+    <div class="message" *ngFor="let message of data.messages" [innerHTML]="message"></div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close>OK</button>
+</div>

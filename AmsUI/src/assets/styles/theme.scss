@@ -1,0 +1,84 @@
+@import '../../../node_modules/@angular/material/_theming.scss';
+
+$custom-typography: mat-typography-config(
+  $font-family: '"Open Sans", sans-serif',
+  $headline: mat-typography-level(18px, 24px, 700),
+  $body-1: mat-typography-level(14px, 16px, 500),
+);
+
+@include mat-core($custom-typography);
+
+$cp-dark-green: (
+  50: #ffffff,
+  100: #c0d8d2,
+  200: #90bbb0,
+  300: #578e81,
+  400: #3a5f56,
+  500: #395d54,
+  600: #395d54,
+  700: #395d54,
+  800: #273f39,
+  900: #1d2f2b,
+  A100: #eff5f4,
+  A200: #b0cfc7,
+  A400: #395d54,
+  A700: #1d2f2b,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$cp-red: (
+  50: #fbecea,
+  100: #f2c7c0,
+  200: #e9a295,
+  300: #d4452b,
+  400: #be3e27,
+  500: #b23925,
+  600: #a93723,
+  700: #a93723,
+  800: #94301e,
+  900: #7f291a,
+  A100: #e9a295,
+  A200: #d4452b,
+  A400: #b23925,
+  A700: #94301e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$my-app-primary: mat-palette($cp-dark-green);
+$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn:    mat-palette($cp-red);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+

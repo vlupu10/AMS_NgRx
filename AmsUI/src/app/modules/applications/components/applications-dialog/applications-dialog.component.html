@@ -1,0 +1,30 @@
+<ams-dialog-title [icon]="['fad', 'tasks']" [label]="title"></ams-dialog-title>
+<div mat-dialog-content class="form-wrapper" [formGroup]="form">
+    <div class="row">
+        <div class="label w30">Date</div>
+        <mat-form-field appearance="fill" class="form-field w60">
+            <mat-label>Choose date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" [value]="data.application.date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="w10"></div>
+    </div>
+    <div class="row">
+        <div class="label w30">Resume</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the resume</mat-label>
+            <textarea matInput formControlName="resume" trim="blur" style="height: 150px;"></textarea>
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="resume"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10">
+            <ams-info-marker class="w10" [text]="'Paste your resume in text format.'"></ams-info-marker>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="data.onCancel(false)">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!isDirty || form.invalid" (click)="onSave()">Save</button>
+</div>

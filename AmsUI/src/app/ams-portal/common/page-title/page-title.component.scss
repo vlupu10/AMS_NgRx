@@ -1,0 +1,17 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title-icon {
+  font-size: 28px;
+  color: #28282a;
+}
+
+.title-label {
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+}

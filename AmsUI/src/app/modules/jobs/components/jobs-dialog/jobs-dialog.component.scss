@@ -1,0 +1,64 @@
+.form-wrapper {
+    height: auto;
+    min-height: 240px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label {
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.18px;
+    color: #28282ADE;
+}
+
+.form-field {
+    font-size: 14px;
+    width: 65%;
+}
+
+mat-checkbox {
+    font-size: 13px;
+    width: 65%;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mt18 {
+    margin-top: -18px;
+}
+
+.w10 {
+    width: 10%;
+    text-align: end;
+}
+
+.w60 {
+    width: 50%;
+}
+
+.w30 {
+    width: 30%;
+}
+
+.set-min-height {
+    min-height: 46px
+}
+
+.tlt {
+    padding-top: 14px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #395D54;
+}
+
+.right {
+    float: right;
+}

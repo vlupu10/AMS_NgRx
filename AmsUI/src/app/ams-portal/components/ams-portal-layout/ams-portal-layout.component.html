@@ -1,0 +1,76 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" #sidenav [opened]="login" class="side-nav">
+        <div class="side-wrapper">
+            <div class="logo">
+                <fa-icon [icon]="['fad', 'chart-network']" size="3x"></fa-icon>
+                <span class="logo-title">&nbsp;&nbsp;AMS Portal</span>
+            </div>
+            <div class="title_" [hidden]="true"></div>
+            <mat-divider></mat-divider>
+            <mat-nav-list>
+                <mat-accordion [displayMode]="'flat'" multi="false">
+                    <ng-container *ngFor="let block of navItems">
+                        <div class="nav-header">
+                            <span>{{block.label}}</span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <ng-container *ngFor="let navItem of block.pages">
+                            <ng-container *ngIf="!navItem.pages">
+                                <a class="nav-link nav-item" [routerLink]="navItem.link" routerLinkActive="active" (click)="closeActivePanel()">
+                                    <fa-icon [icon]="navItem.iconClass" class="panel-icon"></fa-icon>
+                                    <span class="panel-title">{{navItem.label}}</span>
+                                </a>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                            <mat-expansion-panel *ngIf="navItem.pages" class="mat-elevation-z0 nav-panel" #panel="matExpansionPanel" (opened)="setActivePanel(panel)" [expanded]="currentMenuItem === navItem.label">
+                                <mat-expansion-panel-header class="expansion-head" expandedHeight="52px" collapsedHeight="52px">
+                                    <mat-panel-title>
+                                        <fa-icon [icon]="navItem.iconClass" class="panel-icon"></fa-icon>
+                                        <span class="panel-title">{{navItem.label}}</span>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <ng-container *ngFor="let navPage of navItem.pages">
+                                    <a mat-list-item class="nav-link" [routerLink]="navPage.link" routerLinkActive="active">
+                                        <div class="link-text">
+                                            {{navPage.label}}
+                                        </div>
+                                    </a>
+                                    <mat-divider></mat-divider>
+                                </ng-container>
+                            </mat-expansion-panel>
+                        </ng-container>
+                    </ng-container>
+                </mat-accordion>
+            </mat-nav-list>
+            <div class="powered-by-icon" *ngIf="useLogoForHeader">
+                <!-- <img src="/assets/images/AMSLogo.png"> -->
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="wrapper">
+            <div class="header">
+                <ul class="header-items">
+                    <li class="header-item" *ngFor="let item of headerLeft">
+                        <a class="header-element" (click)="item.click()" [ngClass]="item.settingsLink ? 'active-link': ''" [matTooltip]="item.tooltip">
+                            <fa-icon [icon]="item.iconClass" class="header-icon"></fa-icon>
+                            <span class="header-element-text">{{item.text}}</span>
+                        </a>
+                        <div class="line"></div>
+                    </li>
+                </ul>
+                <ul class="header-items">
+                    <li class="header-item">
+                        <a class="header-element" id="logout" (click)="logout()">
+                            <fa-icon [icon]="['fad', 'sign-out-alt']" class="header-icon"></fa-icon>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

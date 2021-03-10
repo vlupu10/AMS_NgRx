@@ -1,0 +1,20 @@
+@import '/src/assets/styles/variables.scss';
+
+
+.notification {
+  color: #00000099;
+  padding: 16px;
+  letter-spacing: 0.25px;
+}
+
+.notification.notification-success {
+  background-color: $lmn-info;
+}
+
+.notification.notification-error {
+  background-color: #FFD4D4;
+}
+
+.notification.notification-message {
+  background-color: #FFEFD4;
+}

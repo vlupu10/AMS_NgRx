@@ -1,0 +1,5 @@
+<mat-form-field appearance="outline" class="search-field">
+    <fa-icon [icon]="['far', 'search']" class="search-icon" matPrefix></fa-icon>
+    <input matInput [formControl]="searchControl" [placeholder]="placeholder" maxlength=255>
+    <fa-icon [icon]="['fas', 'times-circle']" matSuffix class="search-icon cancel-icon" (click)="clearSearch()"></fa-icon>
+</mat-form-field>

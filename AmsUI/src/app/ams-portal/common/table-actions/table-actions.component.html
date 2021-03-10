@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <button mat-icon-button class="action-btn" color="primary" (click)="editClicked(); $event.stopPropagation()">
+    <fa-icon [icon]="['fad', 'pen']" class="action-icon"></fa-icon>
+  </button>
+  <button *ngIf="showDelete" mat-icon-button class="action-btn" color="primary" (click)="deleteClicked(); $event.stopPropagation()">
+    <fa-icon [icon]="['fad', 'trash']" class="action-icon"></fa-icon>
+  </button>
+</div>

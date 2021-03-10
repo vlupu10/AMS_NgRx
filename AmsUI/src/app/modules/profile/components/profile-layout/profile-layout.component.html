@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="header">
+        <!-- <sp-page-title icon="user-lock" label="my profile"></sp-page-title> -->
+    </div>
+
+    <div class="content-container">
+        <span class="column-title">Profile Information</span>
+
+        <ng-container *ngIf="nameForm && emailForm">
+            <div class="row" [formGroup]="nameForm">
+                <div class="label">Username</div>
+
+                <mat-form-field class="form-field" floatLabel="never">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" />
+                    <mat-error>
+                        <!-- <sp-validation-error [form]="nameForm" controlName="username"></sp-validation-error> -->
+                    </mat-error>
+                </mat-form-field>
+
+                <ng-container [ngTemplateOutlet]="!usernameEditing ? editTemplate : actionBtnsTemplate" [ngTemplateOutletContext]="{form: nameForm, controlName: 'username'}">
+                </ng-container>
+            </div>
+
+            <div class="row" [formGroup]="emailForm">
+                <div class="label">Email</div>
+
+                <mat-form-field class="form-field" floatLabel="never">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" />
+                    <mat-error>
+                        <!-- <sp-validation-error [form]="emailForm" controlName="email"></sp-validation-error> -->
+                    </mat-error>
+                </mat-form-field>
+
+                <ng-container [ngTemplateOutlet]="!emailEditing ? editTemplate : actionBtnsTemplate" [ngTemplateOutletContext]="{form: emailForm, controlName: 'email'}">
+                </ng-container>
+            </div>
+
+            <div class="row">
+                <div class="label">Change Your Password</div>
+                <button mat-flat-button color="primary" (click)="changePass()">Change Password</button>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #editTemplate let-form="form" let-controlName="controlName">
+    <button mat-icon-button (click)="switchFieldState(form, controlName, true)" class="edit-btn" [disabled]="emailEditing || usernameEditing" [ngClass]="{'not-active': (emailEditing || usernameEditing)}">
+    <fa-icon [icon]="['fad', 'edit']"></fa-icon>
+  </button>
+</ng-template>
+
+
+<ng-template #actionBtnsTemplate let-form="form" let-controlName="controlName">
+    <div class="actions-wrapper">
+        <button mat-stroked-button color="primary" (click)="switchFieldState(form, controlName, false)" class="action-btn">Cancel</button>
+        <!-- <sp-icon-btn icon="save" label="Save Changes" (buttonClick)="saveChanges(form, controlName)"></sp-icon-btn> -->
+    </div>
+</ng-template>

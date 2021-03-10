@@ -1,0 +1,55 @@
+<div class="container m-w-550">
+    <div class="header">
+        <ams-page-title icon="binoculars" label="Jobs"></ams-page-title>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <div>
+                <ams-search-field (search)="filterData($event)"></ams-search-field>
+            </div>
+            <div class="add-btn-container">
+                <ams-add-new-btn *ngIf="role !== 'user'" (click)="createOrUpdate('Add')"></ams-add-new-btn>
+            </div>
+        </div>
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort class="table">
+                <ng-container matColumnDef="domain">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Domain</th>
+                    <td mat-cell *matCellDef="let element">{{element.domain}}</td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                    <td mat-cell *matCellDef="let element">{{element.type}}</td>
+                </ng-container>
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+                    <td mat-cell *matCellDef="let element">{{element.city}}</td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let element">{{element.date | date: 'mediumDate'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="employer">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employer</th>
+                    <td mat-cell *matCellDef="let element">{{element.employer}}</td>
+                </ng-container>
+                <ng-container matColumnDef="requirements">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Requirements</th>
+                    <td mat-cell *matCellDef="let element">{{element.requirements}}</td>
+                </ng-container>
+                <ng-container matColumnDef="salary">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
+                    <td mat-cell *matCellDef="let element">{{element.salary}}</td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let element;" class="actions-cell">
+                        <ams-table-actions (edit)="createOrUpdate('Edit', element)" (delete)="deleteItem(element)"></ams-table-actions>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row" (click)="createOrUpdate('Edit', row)"></tr>
+            </table>
+        </div>
+    </div>
+</div>

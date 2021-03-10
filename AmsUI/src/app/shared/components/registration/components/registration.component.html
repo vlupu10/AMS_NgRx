@@ -1,0 +1,114 @@
+<div class="login-container">
+    <div class="login-img-container"></div>
+    <div class="login-form">
+        <div class="login-inner-ch" [formGroup]="form">
+            <div class="label titl">Sign In To Portal</div>
+            <div class="row">
+                <div class="label w30">First Name</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the first name</mat-label>
+                    <input matInput formControlName="firstName" trim="blur" cdkFocusInitial/>
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="firstName"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Last Name</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the last name</mat-label>
+                    <input matInput formControlName="lastName" trim="blur" cdkFocusInitial/>
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="lastName"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">User Name</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the user name</mat-label>
+                    <input matInput formControlName="username" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="username"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Password</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the password</mat-label>
+                    <input type="password" matInput formControlName="password" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="password"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Confirm Password</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the password again</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="confirmPassword"></ams-validation-error>
+                        <div class="" *ngIf="form.controls.confirmPassword.errors?.areEqual">Password doesn't match.</div>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">City</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the city</mat-label>
+                    <input matInput formControlName="city" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="city"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Email</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the email</mat-label>
+                    <input matInput formControlName="email" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="email"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Phone</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Type in the phone</mat-label>
+                    <input matInput formControlName="phone" trim="blur" />
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="phone"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <div class="row">
+                <div class="label w30">Role</div>
+                <mat-form-field class="form-field w60" floatLabel="never">
+                    <mat-label>Select role</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <ams-validation-error [form]="form" controlName="role"></ams-validation-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="w10"></div>
+            </div>
+            <br>
+            <div class="row">
+                <button mat-raised-button color="primary" class="" [disabled]="!isDirty || form.invalid" (click)="save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

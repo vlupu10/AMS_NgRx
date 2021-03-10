@@ -1,0 +1,90 @@
+<ams-dialog-title [icon]="['far', 'warehouse']" [label]="title"></ams-dialog-title>
+<div mat-dialog-content class="form-wrapper" [formGroup]="form">
+    <div class="row">
+        <div class="label w30">Domain</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the domain</mat-label>
+            <input matInput formControlName="domain" trim="blur" cdkFocusInitial/>
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="domain"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10">
+            <ams-info-marker class="w10" [text]="'Ex.: developer, astronaut, chef, sales rep, etc.'"></ams-info-marker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="label w30">Type</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the type</mat-label>
+            <input matInput formControlName="type" trim="blur" />
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="type"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10">
+            <ams-info-marker class="w10" [text]="'Ex.: Full-time, part-time, contract etc.'"></ams-info-marker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="label w30">City</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the city</mat-label>
+            <input matInput formControlName="city" trim="blur" />
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="city"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10"></div>
+    </div>
+    <div class="row">
+        <div class="label w30">Date</div>
+        <mat-form-field appearance="fill" class="form-field w60">
+            <mat-label>Choose date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" [value]="data.job.date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="w10"></div>
+    </div>
+    <div class="row">
+        <div class="label w30">Employer</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the employer</mat-label>
+            <input matInput formControlName="employer" trim="blur" />
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="employer"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10"></div>
+    </div>
+    <div class="row">
+        <div class="label w30">Requirements</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the requirements</mat-label>
+            <input matInput formControlName="requirements" trim="blur" />
+            <mat-error>
+                <ams-validation-error [form]="form" controlName="requirements"></ams-validation-error>
+            </mat-error>
+        </mat-form-field>
+        <div class="w10">
+            <ams-info-marker class="w10" [text]="'Ex.: javascript, c#, sales, marketing, etc.'"></ams-info-marker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="label w30">Salary</div>
+        <mat-form-field class="form-field w60" floatLabel="never">
+            <mat-label>Type in the salary</mat-label>
+            <input matInput formControlName="salary" trim="blur" />
+        </mat-form-field>
+        <div class="w10">
+            <ams-info-marker class="w10" [text]="'Ex.: javascript, c#, sales, marketing, etc.'"></ams-info-marker>
+        </div>
+    </div>
+    <br>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="data.onCancel(false)">Cancel</button>
+    <button mat-raised-button color="primary" *ngIf="role === 'admin' || role === 'employer'" [disabled]="!isDirty || form.invalid" (click)="onSave()">Save</button>
+    <button mat-raised-button color="primary" *ngIf="role === 'user'" [disabled]="form.invalid" (click)="onApply()">Apply For This Job</button>
+</div>

@@ -1,0 +1,13 @@
+<div mat-dialog-content class="content">
+  <div class="text" *ngIf="data.message">{{data.message}}</div>
+ 
+  <ng-container *ngIf="data.messages && data.messages.length > 0">
+    <div *ngFor="let text of data.messages" class="text">
+      {{text}}
+    </div>
+  </ng-container>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" mat-dialog-close>CANCEL</button>
+  <button mat-flat-button color="warn" (click)="confirm()" mat-dialog-close>CONFIRM</button>
+</div>
