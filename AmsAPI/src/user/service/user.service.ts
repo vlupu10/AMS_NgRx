@@ -15,6 +15,7 @@ export class UserService {
   ) {}
 
   async login({ username, password, token }): Promise<UserModel[]> {
+    const test = await this.userRepository.findAll();
     try {
       const user = await this.userRepository
         .find({ username });
