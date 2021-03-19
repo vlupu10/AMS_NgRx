@@ -22,6 +22,9 @@
         "webpack": "webpack --config webpack.config.js"
     },
     "dependencies": {
+        "@mikro-orm/core": "^4.4.4",
+        "@mikro-orm/mongodb": "^4.4.4",
+        "@mikro-orm/nestjs": "^4.2.0",
         "@nestjs/common": "^5.0.0",
         "@nestjs/config": "^0.6.3",
         "@nestjs/core": "^5.0.0",
@@ -41,7 +44,7 @@
         "mssql": "^6.3.1",
         "passport": "^0.4.1",
         "passport-jwt": "^4.0.0",
-        "reflect-metadata": "^0.1.12",
+        "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
         "rxjs": "^6.0.0",
         "typeorm": "^0.2.30"

@@ -1,31 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { Job } from './../interfaces/job.interface';
-import { JobSchema, JobModel } from './../models/job.model';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
-
+import { JobModel } from '../schemas/job.schema.mko';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/mongodb';
 @Injectable()
 export class JobsService {
-  constructor(@InjectModel('Job') private jobModel: Model<any>) {}
+  constructor(@InjectRepository(JobModel) private jobRepository: EntityRepository<JobModel>) {}
 
-  async findAll(): Promise<Job[]> {
-    return await this.jobModel.find();
+  async findAll(): Promise<JobModel[]> {
+    return await this.jobRepository.findAll();
   }
 
-  async findOne(id: string): Promise<Job> {
-    return await this.jobModel.findOne({ _id: id });
+  async findOne(id: string): Promise<JobModel> {
+    return await this.jobRepository.findOne({id});
   }
 
-  async create(job: Job): Promise<Job> {
-    const newJob = new this.jobModel(job);
-    return await newJob.save();
+  async create(job: Job): Promise<JobModel> {
+    const newJob = this.jobRepository.create(job);
+    this.jobRepository.persist(newJob);
+    await this.jobRepository.flush();
+    return newJob;
   }
 
-  async delete(id: string): Promise<Job> {
-    return await this.jobModel.findByIdAndRemove(id);
+  async delete(id: string): Promise<JobModel> {
+    const jobObj = await this.findOne(id);
+    this.jobRepository.removeAndFlush(jobObj);
+    return jobObj;
   }
 
-  async update(id: string, job: Job): Promise<Job> {
-    return await this.jobModel.findByIdAndUpdate(id, job, { new: true });
+  async update(id: string, job: Job): Promise<JobModel> {
+    let jobObj = await this.findOne(id);
+    jobObj = this.jobRepository.assign(jobObj, job);
+    this.jobRepository.persistAndFlush(jobObj);
+    return jobObj;
   }
 }
