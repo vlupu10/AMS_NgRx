@@ -1,7 +1,9 @@
 import { Entity, Property } from '@mikro-orm/core';
 import { BaseEntity } from 'src/shared/base-entity.entity';
 
-@Entity()
+@Entity({
+    collection: `applications`,
+})
 export class ApplicationModel extends BaseEntity{
     @Property()
     userId: string;

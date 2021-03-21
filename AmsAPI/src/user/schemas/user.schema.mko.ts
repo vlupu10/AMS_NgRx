@@ -39,4 +39,3 @@ export class UserModel extends BaseEntity{
     date: string;
 
 }
-

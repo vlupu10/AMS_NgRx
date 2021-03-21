@@ -5,7 +5,6 @@ import { EntityRepository } from '@mikro-orm/mongodb';
 
 @Injectable()
 export class ApplicationsService {
-  // constructor(@InjectModel('Application') private applicationModel: Model<any>) {}
   constructor(@InjectRepository(ApplicationModel) private applicationRepository: EntityRepository<ApplicationModel>) {}
 
   async findAll(): Promise<ApplicationModel[]> {

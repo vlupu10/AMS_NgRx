@@ -1,7 +1,9 @@
 import { Entity, Property } from '@mikro-orm/core';
 import { BaseEntity } from 'src/shared/base-entity.entity';
 
-@Entity()
+@Entity({
+    collection: `jobs`,
+})
 export class JobModel extends BaseEntity{
     @Property()
     type: string;
@@ -27,4 +29,3 @@ export class JobModel extends BaseEntity{
     @Property()
     domain: string;
 }
-

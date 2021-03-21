@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-// import { Model } from 'mongoose';
-// import { InjectModel } from '@nestjs/mongoose';
 import { UserModel } from '../schemas/user.schema.mko';
 import { User } from '../interfaces/user.interface';
 import { AuthService } from '../../auth/service/auth.service';
@@ -15,7 +13,6 @@ export class UserService {
   ) {}
 
   async login({ username, password, token }): Promise<UserModel[]> {
-    const test = await this.userRepository.findAll();
     try {
       const user = await this.userRepository
         .find({ username });
@@ -53,7 +50,7 @@ export class UserService {
     await this.userRepository.flush();
     return newUser;
   }
-  
+
   async update(id: string, user: User): Promise<UserModel> {
     let userObj = await this.findOne(id);
     userObj = this.userRepository.assign(userObj, user);

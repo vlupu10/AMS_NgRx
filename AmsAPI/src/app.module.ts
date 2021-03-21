@@ -19,16 +19,16 @@ import { MongoHighlighter } from '@mikro-orm/mongo-highlighter';
       clientUrl: config.mongoURI,
       dbName: 'test',
       highlighter: new MongoHighlighter(),
-      debug: true,
+      // debug: true,
       logger: (message) => {
         const logger = new Logger();
         logger.log(`Mikro orm: ${message}`);
       },
-      discovery: {
-        warnWhenNoEntities: false, // by default, discovery throws when no entity is processed
-        requireEntitiesArray: true, // force usage of class refrences in `entities` instead of paths
-        alwaysAnalyseProperties: false, // do not analyse properties when not needed (with ts-morph)
-      },
+      // discovery: {
+      //   warnWhenNoEntities: false, // by default, discovery throws when no entity is processed
+      //   requireEntitiesArray: true, // force usage of class refrences in `entities` instead of paths
+      //   alwaysAnalyseProperties: false, // do not analyse properties when not needed (with ts-morph)
+      // },
     }),
     AuthModule,
   ],
