@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ApplicationsController } from './controllers/applications.controller';
 import { ApplicationsService } from './services/applications.service';
-import { ApplicationSchema } from './schemas/application.schema';
+import { ApplicationModel } from './schemas/application.schema.mko';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'Application', schema: ApplicationSchema}])],
+    imports: [MikroOrmModule.forFeature([ApplicationModel])],
     controllers: [ ApplicationsController ],
     providers: [ ApplicationsService ],
 })

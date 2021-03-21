@@ -1,6 +1,6 @@
 version: "3"
 services:
-  backend:
+  someapi:
     build:
       context: ./AmsAPI
       dockerfile: Dockerfile
@@ -12,3 +12,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:3000"
+    depends_on:
+      - someapi

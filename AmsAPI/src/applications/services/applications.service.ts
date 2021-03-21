@@ -1,31 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { Application } from './../interfaces/application.interface';
-import { ApplicationSchema, ApplicationModel } from './../models/application.model';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
+import { ApplicationModel } from '../schemas/application.schema.mko';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/mongodb';
 
 @Injectable()
 export class ApplicationsService {
-  constructor(@InjectModel('Application') private applicationModel: Model<any>) {}
+  constructor(@InjectRepository(ApplicationModel) private applicationRepository: EntityRepository<ApplicationModel>) {}
 
-  async findAll(): Promise<Application[]> {
-    return await this.applicationModel.find();
+  async findAll(): Promise<ApplicationModel[]> {
+    return await this.applicationRepository.findAll();
   }
 
-  async findOne(id: string): Promise<Application> {
-    return await this.applicationModel.findOne({ _id: id });
+  async findOne(id: string): Promise<ApplicationModel> {
+    return await this.applicationRepository.findOne({ id });
   }
 
-  async create(application: Application): Promise<Application> {
-    const newApplication = new this.applicationModel(application);
-    return await newApplication.save();
+  async create(application: ApplicationModel): Promise<ApplicationModel> {
+    const newApplication = this.applicationRepository.create(application);
+    this.applicationRepository.persist(newApplication);
+    await this.applicationRepository.flush();
+    return newApplication;
   }
 
-  async delete(id: string): Promise<Application> {
-    return await this.applicationModel.findByIdAndRemove(id);
+  async delete(id: string): Promise<ApplicationModel> {
+    const applicationObj = await this.findOne(id);
+    this.applicationRepository.removeAndFlush(applicationObj);
+    return applicationObj;
   }
 
-  async update(id: string, application: Application): Promise<Application> {
-    return await this.applicationModel.findByIdAndUpdate(id, application, { new: true });
+  async update(id: string, application: ApplicationModel): Promise<ApplicationModel> {
+    let applicationObj = await this.findOne(id);
+    applicationObj = this.applicationRepository.assign(applicationObj, application);
+    this.applicationRepository.persistAndFlush(applicationObj);
+    return applicationObj;
   }
 }

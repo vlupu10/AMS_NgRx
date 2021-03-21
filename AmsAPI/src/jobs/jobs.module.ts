@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { JobsController } from './controllers/jobs.controller';
 import { JobsService } from './services/jobs.service';
-import { JobSchema } from './schemas/job.schema';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { JobModel } from './schemas/job.schema.mko';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'Job', schema: JobSchema}])],
-    controllers: [ JobsController ],
+  imports: [MikroOrmModule.forFeature([JobModel])],
+  controllers: [ JobsController ],
     providers: [ JobsService ],
   })
   export class JobsModule {}
