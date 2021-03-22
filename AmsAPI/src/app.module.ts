@@ -8,8 +8,10 @@ import { ApplicationsModule } from './applications/applications.module';
 import { AuthModule } from './auth/auth.module';
 import config from './config/keys';
 import { MongoHighlighter } from '@mikro-orm/mongo-highlighter';
+import { CqrsModule } from '@nestjs/cqrs';
 @Module({
   imports: [
+    CqrsModule,
     UserModule,
     JobsModule,
     ApplicationsModule,
